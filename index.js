@@ -100,6 +100,24 @@ db.once("open", function () {
     }
   });
 
+  //* GET BANGLADESH USERS
+  app.get("/api/users/bangladesh", async (req, res) => {
+    try {
+      const bangladeshUsers = await User.find({ pais: "Bangladesh" });
+      res.json({
+        ok: true,
+        message: "Bangladesh users found",
+        data: bangladeshUsers,
+      });
+    } catch (error) {
+      res.json({
+        ok: false,
+        message: "Bangladesh users not found",
+        data: error,
+      })
+    }
+  })
+
   app.listen(3000, function () {
     console.log("Server started");
   });
