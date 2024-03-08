@@ -118,6 +118,26 @@ db.once("open", function () {
     }
   })
 
+  //* GET BANGLADESH COMAPNIES
+  app.get("/api/companies/bangladesh", async (req, res) => {
+    try {
+      const bangladeshCompanies = await Company.find({ ciudad: "Bayerland" });
+      res.json({
+        ok: true,
+        message: "Bangladesh companies found",
+        data: bangladeshCompanies,
+      });
+    } catch (error) {
+      res.json({
+        ok: false,
+        message: "Bangladesh companies not found",
+        data: error,
+      })
+    }
+  })
+
+  // BANGLADESH DOES NOT EXIST
+
   app.listen(3000, function () {
     console.log("Server started");
   });
