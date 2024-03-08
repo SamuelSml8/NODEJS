@@ -16,49 +16,72 @@ db.once("open", function () {
     name: String,
     last_name: String,
   });
-  const User = moongoose.model("user", userSchema);
+
+  const User = moongoose.model("users", userSchema);
+  const Company = moongoose.model("companies", userSchema);
 
   const app = express();
   app.use(express.json());
 
+  // GET EVERY USERS
   app.get("/api/users", async (req, res) => {
     try {
       const users = await User.find();
       console.log(users);
       res.json({
-        "ok": true,
-        "message": "Users found",
-        "data": users
+        ok: true,
+        message: "Users found",
+        data: users,
       });
     } catch (error) {
       res.json({
-        "ok": false,
-        "message": "Users not found",
-        "data": error
+        ok: false,
+        message: "Users not found",
+        data: error,
       });
       console.error("object not found", error);
     }
   });
 
-
+  // GET 10 USERS
   app.get("/api/users/limit", async (req, res) => {
     try {
       const users = await User.find().limit(10);
       console.log(users);
       res.json({
-        "ok": true,
-        "message": "Just 10 users found",
-        "data": users
+        ok: true,
+        message: "Just 10 users found",
+        data: users,
       });
     } catch (error) {
       res.json({
-        "ok": false,
-        "message": "Users not found",
-        "data": error
+        ok: false,
+        message: "Users not found",
+        data: error,
       });
       console.error("object not found", error);
     }
-  })
+  });
+
+  // GET COMPANIES
+  app.get("/api/companies", async (req, res) => {
+    try {
+      const companies = await Company.find();
+      res.json({
+        ok: true,
+        message: "Companies found",
+        data: companies,
+      });
+    } catch (error) {
+      res.json({
+        ok: false,
+        message: "Companies not found",
+        data: error,
+      });
+      console.error("object not found", error);
+    }
+  });
+
   app.listen(3000, function () {
     console.log("Server started");
   });
