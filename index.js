@@ -114,9 +114,9 @@ db.once("open", function () {
         ok: false,
         message: "Bangladesh users not found",
         data: error,
-      })
+      });
     }
-  })
+  });
 
   //* GET BANGLADESH COMAPNIES
   app.get("/api/companies/bangladesh", async (req, res) => {
@@ -132,9 +132,9 @@ db.once("open", function () {
         ok: false,
         message: "Bangladesh companies not found",
         data: error,
-      })
+      });
     }
-  })
+  });
 
   // BANGLADESH DOES NOT EXIST
 
